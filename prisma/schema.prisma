@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @unique
+  email             String  @unique
+  password          String
+  username          String
+  avatarUrl         String?
+  emailCodeVerified String?
+  emailVerified     Boolean
+
+  status   Status   @default(Active)
+  role     Roles    @default(USER)
+  currency Currency @default(EGP)
+
+  lastLogin DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  balance Balance?
+  Income  Income[]
+  Expense Expense[]
+}
+
+model Balance {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @unique 
+  cash   Float  @default(0)
+  bank   Float  @default(0)
+  wallet Float  @default(0)
+
+  user User @relation(fields: [userId], references: [userId])
+}
+
+model Income {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String
+  amount      Float
+  source      IncomeType
+  description String?
+  date        DateTime   @default(now())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  isDeleted   Boolean    @default(false)
+
+  user User @relation(fields: [userId], references: [userId])
+}
+
+model Expense {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String
+  amount      Float
+  description String?
+  paymentType PaymentType
+  date        DateTime    @default(now())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  isDeleted   Boolean     @default(false)
+
+  user User @relation(fields: [userId], references: [userId])
+}
+
+enum IncomeType {
+  Salary
+  Gift
+  Business
+  Other
+}
+
+enum PaymentType {
+  Cash
+  Bank
+  Wallet
+}
+
+enum Roles {
+  ADMIN
+  USER
+}
+
+enum Currency {
+  EGP
+  USD
+  EUR
+}
+
+enum Status {
+  Active
+  Suspended
+  Deleted
+}
