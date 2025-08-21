@@ -27,10 +27,11 @@ export default function Form() {
       toast(state.message, { className: "text-red-400" });
     }
   }, [state.message, state.status, router]);
+  const reback = "test";
   return (
     <form ref={formRef} action={action}>
       <CardContent className="space-y-4">
-        {getFormFields().map((field: IFormField) => {
+        {getFormFields(reback).map((field: IFormField) => {
           const fieldValue = state.formData?.get(field.name) as string;
           return (
             <Fragment key={field.name}>

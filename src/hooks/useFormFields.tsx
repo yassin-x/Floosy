@@ -3,7 +3,7 @@ import { IFormField, IFormFieldsVariables } from "@/types/app";
 import { IncomeType, PaymentType } from "@prisma/client";
 
 const useFormFields = ({ slug }: IFormFieldsVariables) => {
-  const signInFields = (): IFormField[] => [
+  const signInFields = (reback: string): IFormField[] => [
     {
       label: "البريد الالكتروني",
       name: "email",
@@ -21,7 +21,7 @@ const useFormFields = ({ slug }: IFormFieldsVariables) => {
     },
   ];
 
-  const signUpFields = (): IFormField[] => [
+  const signUpFields = (reback: string): IFormField[] => [
     {
       label: "البريد الالكتروني",
       name: "email",

@@ -52,10 +52,11 @@ export default function Form() {
       setIsLoading(false);
     }
   };
+  const reback = "test";
   return (
     <form ref={formRef} onSubmit={onSubmit}>
       <CardContent className="space-y-4">
-        {getFormFields().map((field: IFormField) => (
+        {getFormFields(reback).map((field: IFormField) => (
           <Fragment key={field.name}>
             <FormFields {...field} error={error} />
           </Fragment>
