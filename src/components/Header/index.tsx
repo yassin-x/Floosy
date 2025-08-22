@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import { getServerSession } from "next-auth";
 import Auth from "./Auth";
 import { NextAuthOptions } from "@/server/NextAuth";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export default async function Header() {
   const initialSession = await getServerSession(NextAuthOptions);
@@ -31,6 +32,7 @@ export default async function Header() {
           <div className="lg:hidden">
             <Nav />
           </div>
+          <ThemeSwitcher />
         </div>
       </div>
     </header>

@@ -3,6 +3,7 @@ import { Cairo } from "next/font/google";
 import "./globals.css";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 import { Toaster } from "@/components/ui/sonner";
+import NextThemeProvider from "@/providers/NextThemeProvider";
 
 const cairo = Cairo({
   subsets: ["latin"],
@@ -27,10 +28,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" suppressHydrationWarning dir={"rtl"}>
-      <body className={`${cairo.className} antialiased overflow-x-hidden dark`}>
+      <body className={`${cairo.className} antialiased overflow-x-hidden`}>
         <NextAuthSessionProvider>
-          {children}
-          <Toaster position="top-center" />
+          <NextThemeProvider>
+            {children}
+            <Toaster position="top-center" />
+          </NextThemeProvider>
         </NextAuthSessionProvider>
       </body>
     </html>

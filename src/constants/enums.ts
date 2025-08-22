@@ -20,6 +20,12 @@ export enum Pages {
   Users = "users",
 }
 
+export enum Themes {
+  LIGHT = "light",
+  DARK = "dark",
+  SYSTEM = "system",
+}
+
 export enum Environments {
   Prod = "production",
   Dev = "development",
