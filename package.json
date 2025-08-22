@@ -7,7 +7,7 @@
     "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-    "email:send": "cp .env ./node_modules/react-email && email dev --dir src/components/Emails --port 3001"
+    "email:send": "email dev --dir src/components/Emails --port 3001"
   },
   "dependencies": {
     "@prisma/client": "^6.13.0",

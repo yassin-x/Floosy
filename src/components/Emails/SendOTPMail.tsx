@@ -23,12 +23,12 @@ export default function SendOTPMail({
         <title>فلوسي | تحقق من بريدك الإلكتروني</title>
       </Head>
       <Tailwind>
-        <Body className="bg-gray-100 font-sans my-8 md:my-16">
+        <Body className="bg-gray-100 font-sans my-8">
           <Container>
             <Section className="max-w-lg mx-auto bg-white rounded-lg shadow-lg p-6">
               <div className="flex justify-center items-center mb-4 mx-auto">
                 <Img
-                  src="https://media.discordapp.net/attachments/1397994186950574130/1403791674840317993/logo.jpg?ex=68997f20&is=68982da0&hm=c016e1daa8b3eb59e7c4872f27122c8881256a74da06638259715c1c2c198a96&=&format=webp"
+                  src="https://media.discordapp.net/attachments/1397994186950574130/1403791674840317993/logo.jpg?ex=68a95120&is=68a7ffa0&hm=b6368b97f832e62fbba912a402753dae1d2df5b3e7bc859e5208c9a3287ba1ab&=&format=webp"
                   alt="Floosy"
                   width={80}
                   height={80}
@@ -54,15 +54,6 @@ export default function SendOTPMail({
                     {digit}
                   </Text>
                 ))}
-              </div>
-
-              <div className="text-center mt-4">
-                <button
-                  className="bg-blue-500 transition-all text-white px-4 py-2 rounded-lg cursor-pointer"
-                  onClick={() => navigator.clipboard.writeText(validationCode)}
-                >
-                  نسخ الكود 📋
-                </button>
               </div>
 
               <Text className="text-center text-sm text-gray-500 mt-6">
