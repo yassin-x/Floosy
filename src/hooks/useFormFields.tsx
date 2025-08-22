@@ -3,7 +3,7 @@ import { IFormField, IFormFieldsVariables } from "@/types/app";
 import { IncomeType, PaymentType } from "@prisma/client";
 
 const useFormFields = ({ slug }: IFormFieldsVariables) => {
-  const signInFields = (reback: string): IFormField[] => [
+  const signInFields = (): IFormField[] => [
     {
       label: "البريد الالكتروني",
       name: "email",
@@ -21,7 +21,7 @@ const useFormFields = ({ slug }: IFormFieldsVariables) => {
     },
   ];
 
-  const signUpFields = (reback: string): IFormField[] => [
+  const signUpFields = (): IFormField[] => [
     {
       label: "البريد الالكتروني",
       name: "email",
@@ -128,12 +128,19 @@ const useFormFields = ({ slug }: IFormFieldsVariables) => {
     },
   ];
 
-  const getFormFields = (userId: string): IFormField[] => {
+  const getFormFields = (): IFormField[] => {
     switch (slug) {
       case Pages.Signin:
         return signInFields();
       case Pages.Signup:
         return signUpFields();
+      default:
+        return [];
+    }
+  };
+
+  const getFormFieldsWithUserId = (userId: string): IFormField[] => {
+    switch (slug) {
       case Pages.Expense:
         return expenseFields(userId);
       case Pages.Income:
@@ -145,6 +152,7 @@ const useFormFields = ({ slug }: IFormFieldsVariables) => {
 
   return {
     getFormFields,
+    getFormFieldsWithUserId,
   };
 };
 

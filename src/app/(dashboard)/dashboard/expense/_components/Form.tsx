@@ -25,7 +25,7 @@ export default function Form({
 }: {
   initalSession: Session | null;
 }) {
-  const { getFormFields } = useFormFields({ slug: Pages.Expense });
+  const { getFormFieldsWithUserId } = useFormFields({ slug: Pages.Expense });
   const session = useClientSession(initalSession);
   const [state, action, pending] = useActionState(addExpense, initialState);
   const [open, setOpen] = React.useState(false);
@@ -50,7 +50,7 @@ export default function Form({
         </DialogHeader>
         <form action={action}>
           <div className="grid gap-4">
-            {getFormFields(session?.data?.user?.userId as string).map(
+            {getFormFieldsWithUserId(session?.data?.user?.userId as string).map(
               (field) => (
                 <div key={field.name} className="grid gap-2">
                   <FormFields {...field} error={state.error} />
